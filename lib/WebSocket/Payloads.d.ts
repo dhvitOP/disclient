@@ -1,0 +1,2 @@
+declare const createPayload: (opcode: number, token: string, intents: number) => string;
+export default createPayload;

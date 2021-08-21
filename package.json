@@ -1,0 +1,42 @@
+{
+  "name": "disclient",
+  "version": "1.0.1",
+  "description": "A powerfull discord api wrapper.",
+  "main": "lib/index.js",
+  "types": "lib",
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "ts-node test.ts"
+  },
+  "keywords": [
+    "node",
+    "discord",
+    "discordapp",
+    "discordapi",
+    "discord"
+  ],
+  "author": "tsdon0001",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/disclient/disclient#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/disclient/disclient.git"
+  },
+  "bugs": {
+    "url": "https://github.com/disclient/disclient/issues"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@types/node-fetch": "^2.5.12",
+    "@types/ws": "^7.4.7",
+    "events": "^3.3.0",
+    "node-fetch": "^2.6.1",
+    "ws": "^8.1.0"
+  }
+}
