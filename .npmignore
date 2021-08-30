@@ -1,6 +1,10 @@
 node_modules
 test.js
 test.ts
+.github
+disclient.png
+logodisclient.png
 src
+.gitignore
 .prettierrc.json
 tsconfig.json
