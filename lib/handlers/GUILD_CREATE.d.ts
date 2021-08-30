@@ -1,2 +1,3 @@
-import { Payload } from '../typings';
-export default function (client: any, payload: Payload): Promise<void>;
+import { Client } from '../Client/Client';
+import { Payload } from '../interfaces';
+export default function (client: Client, payload: Payload): Promise<void>;

@@ -1,7 +1,7 @@
 export interface Payload {
   op: number;
   d: any;
-  t: string;
+  t: any;
   s: number;
 }
 export interface Message {
@@ -36,7 +36,16 @@ export interface Message {
   channel: {
     id: string;
     get: any;
-    sendEmbed: Function,
     sendMessage: Function;
+    reply: Function;
   };
+}
+
+export enum Activities {
+  PLAYING = 0,
+  STREAMING = 1,
+  LISTENING = 2,
+  WATCHING = 3,
+  CUSTOM = 4,
+  COMPETING = 5,
 }

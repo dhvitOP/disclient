@@ -1,13 +1,13 @@
 /// <reference types="node" />
 import EventEmitter from 'events';
-import WebSocket from 'ws';
-export declare class Socket extends EventEmitter {
-    token: string;
-    ws: WebSocket | null;
-    activity: string | null;
+import { Client } from '../Client/Client';
+export default class Socket extends EventEmitter {
+    private client;
+    token: string | null;
     private interval;
+    private ws;
+    constructor(client: Client, token: string);
+    login(): Promise<void>;
+    UpdatePresence(msg: string, type: number | any, status: string | null): Promise<void>;
     private heartbeat;
-    constructor(token: string);
-    setActivity(activity: string): Promise<void>;
-    build(): Promise<void>;
 }

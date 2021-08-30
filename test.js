@@ -1,19 +1,14 @@
-const  { Socket, Embed }  = require('./lib/index');
+const discord = require('./lib/index');
 
-const client = new Socket("ODQ4MjA5MzI1NTcwNzg1MzEx.YLJSfg.Y1O3GfGH8bMZafONaVxkFnXxiFk")
+const client = new discord.Client('ODEzNjQ5NjAzODQ4NDM3Nzcw.YDSYPg.3k2e-wBXs8ESMElE9OwL5U51FtU');
 
 client.on('READY', () => {
-    console.log("Bot has been logged in.")
+  console.log(`${client.user.tag} is online`);
 });
 
-client.on('MESSAGE_CREATE', async (message) => {
-    if(message.content === "!channelinfo"){
-        message.react("✅")
-        const embed = new Embed()
-        embed.setAuthor("Hi")
-        embed.setDescription("LOL")
-        message.channel.sendMessage("Hi guys")
-        message.channel.sendEmbed([embed], "hi");
-    }
+client.on('MESSAGE_CREATE', async message => {
+  if (message.content === '!ping') {
+    message.channel.reply('Pong');
+  }
 });
-client.build()
+client.build();

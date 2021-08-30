@@ -1,4 +1,4 @@
-const createPayload = (opcode: number, token: string, intents: number) => {
+const createPayload = (opcode: number, token: string | null, intents: number) => {
     const data  = {
         op: opcode,
         d: {

@@ -1,20 +1,15 @@
-import { Embed } from '../modules/Embed';
-import RequestDeleteMessage from '../Requests/RequestDeleteMessage';
-import RequestGetChannel from '../Requests/RequestGetChannel';
-import RequestNewEmbed from '../Requests/RequestNewEmbed';
-import RequestNewMessage from '../Requests/RequestNewMessage';
-import RequestNewReaction from '../Requests/RequestNewReaction';
-import { Message, Payload } from '../typings';
+import { Client } from '../Client/Client';
+import { Payload } from '../interfaces';
+import { Message } from '../interfaces';
 
-export default async function (client: any, payload: Payload){
+export default async function (client: Client, payload: Payload){
     /**
      * Send a message to discord api
      * @param {string} content
      * @returns {object}
      */
-    const sendMessage = (content: string) => {
-        let res;
-        res = RequestNewMessage(client.token, payload.d.channel_id, content)
+     const sendMessage = (content: string) => {
+        const res = client.rest.PostMessage(payload.d.channel_id, content)
         return res;
     }
     /**
@@ -22,31 +17,25 @@ export default async function (client: any, payload: Payload){
      * @param {string} reason 
      */
     const deleteMessage = (reason: string) => {
-        RequestDeleteMessage(payload.d.id, client.token, payload.d.channel_id, reason)
+        client.rest.deleteMessage(payload.d.channel_id, payload.d.id, reason)
     }
     /**
      * The Emoji to react
      * @param {string} emoji 
      */
     const reactMessage = (emoji: string) => {
-        RequestNewReaction(emoji, payload.d.id, client.token, payload.d.channel_id)
+        client.rest.createReaction(payload.d.channel_id, payload.d.id, emoji)
     }
     /**
      * Get channel and the details of the channel
      * @returns {object} channel
      */
     const get = () => {
-        const res = RequestGetChannel(client.token, payload.d.channel_id)
+        const res = client.rest.fetchOneChannel(payload.d.channel_id)
         return res;
     }
-    /**
-     * 
-     * @param {Array<Embed>} embeds 
-     * @param {string} content 
-     * @returns {object}
-     */
-    const sendEmbed = (embeds: Array<Embed>, content?: string) => {
-        const res = RequestNewEmbed(client.token, payload.d.channel_id, embeds, content)
+    const replyMessage = (content: string) => {
+        const res = client.rest.replyMessage(payload.d.channel_id, payload.d.id, content);
         return res;
     }
     /**
@@ -66,9 +55,9 @@ export default async function (client: any, payload: Payload){
         react: reactMessage,
         channel: {
             id: payload.d.channel_id,
-            sendEmbed: sendEmbed,
             sendMessage: sendMessage,
             get: get,
+            reply: replyMessage
         }
     }
     client.emit(payload.t, message)

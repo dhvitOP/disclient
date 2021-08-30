@@ -1,7 +1,7 @@
 export interface Payload {
     op: number;
     d: any;
-    t: string;
+    t: any;
     s: number;
 }
 export interface Message {

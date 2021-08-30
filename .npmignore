@@ -1,5 +1,6 @@
 node_modules
 test.js
+test.ts
 src
 .prettierrc.json
 tsconfig.json
