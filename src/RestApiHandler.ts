@@ -25,7 +25,7 @@ export default class RestApiHandler {
      */
     async fetchOneChannel(channelid: string){
         const res = await fetch(`${URI.API}/channels/${channelid}`, {
-            method: 'GET',
+            method: "GET",
             headers: { "Content-Type": "application/json", "Authorization": `Bot ${this.token}` }
         })
         return res.json();
@@ -36,7 +36,7 @@ export default class RestApiHandler {
      */
     async fetchGuilds(){
         const res = await fetch(`${URI.API}/guilds`, {
-            method: 'GET',
+            method: "GET",
             headers: { "Content-Type": "application/json", "Authorization": `Bot ${this.token}` }
         })
 
@@ -82,14 +82,14 @@ export default class RestApiHandler {
         return res.json
     }
     async PostMessage(channel: string, content: string){
-        const headers = { 'Content-Type': 'application/json', 'Authorization': `Bot ${this.token}` };
+        const headers = { "Content-Type": "application/json", "Authorization": `Bot ${this.token}` };
         const data = {
             "content": content,
             "tts": false,
         };
         const body = JSON.stringify(data);
         const res = await fetch(`${URI.API}/channels/${channel}/messages`, {
-            method: 'POST',
+            method: "POST",
             headers,
             body,
         })
@@ -97,24 +97,24 @@ export default class RestApiHandler {
         return res.json();
     }
     async createReaction(channel: string, message: string, emoji: string){
-        const headers = { 'Content-Type': 'application/json', 'Authorization': `Bot ${this.token}` };
+        const headers = { "Content-Type": "application/json", "Authorization": `Bot ${this.token}` };
         const uri = `${URI.API}/channels/${channel}/messages/${message}/reactions/${emoji}/@me`
         const encodeduri = encodeURI(uri);
     
         await fetch(encodeduri, {
-            method: 'PUT',
+            method: "PUT",
             headers,
         })
     }
     async deleteMessage(channel: string, message: string, reason: string){
-        const headers = { 'Content-Type': 'application/json', 'Authorization': `Bot ${this.token}`, 'X-Audit-Log-Reason': reason };
+        const headers = { "Content-Type": "application/json", "Authorization": `Bot ${this.token}`, "X-Audit-Log-Reason": reason };
         await fetch(`${URI.API}/channels/${channel}/messages/${message}`, {
-            method: 'DELETE',
+            method: "DELETE",
             headers,
         })
     }
     async replyMessage(channel: string, message: string, content: string){
-        const headers = { 'Content-Type': 'application/json', 'Authorization': `Bot ${this.token}` };
+        const headers = { "Content-Type": "application/json", "Authorization": `Bot ${this.token}` };
         const data = {
             "content": content,
             "message_reference": {
@@ -124,7 +124,7 @@ export default class RestApiHandler {
         };
         const body = JSON.stringify(data);
         const res = await fetch(`${URI.API}/channels/${channel}/messages`, {
-            method: 'POST',
+            method: "POST",
             headers,
             body,
         })

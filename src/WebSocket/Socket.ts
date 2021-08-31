@@ -1,8 +1,8 @@
-import EventEmitter from 'events';
-import WebSocket from 'ws';
-import { Client } from '../Client/Client';
-import { URI } from '../Constants';
-import createPayload from './Payloads';
+import EventEmitter from "events";
+import WebSocket from "ws";
+import { Client } from "../Client/Client";
+import { URI } from "../Constants";
+import createPayload from "./Payloads";
 
 export default class Socket extends EventEmitter {
   public token!: string | null;
@@ -19,11 +19,11 @@ export default class Socket extends EventEmitter {
     try {
       const { token } = this;
 
-      this.ws?.on('open', async () => {
+      this.ws?.on("open", async () => {
         this.ws?.send(createPayload(2, token, 513));
       });
 
-      this.ws?.on('message', async (message: string) => {
+      this.ws?.on("message", async (message: string) => {
         const packet = JSON.parse(message);
         const { t: event, d, op } = packet;
 

@@ -58,7 +58,7 @@ export default class ClientUser {
    * Tag of the client
    */
   get tag(): string {
-    return `${this._username}#${this._discriminator}`
+    return `${this._username}#${this._discriminator}`;
   }
   /**
    * Avatar of the client

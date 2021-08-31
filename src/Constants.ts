@@ -1,4 +1,4 @@
 export enum URI {
-  GATEWAY = 'wss://gateway.discord.gg/?v=6',
-  API = 'https://discord.com/api/v6',
+  GATEWAY = "wss://gateway.discord.gg/?v=6",
+  API = "https://discord.com/api/v6",
 }

@@ -5,4 +5,4 @@ export default interface ClientEvents {
     MESSAGE_CREATE: (message: Message) => void;
     MESSAGE_UPDATE: (oldMessage: Message, newMessage: Message) => void;
     CHANNEL_CREATE: (channel: string) => void; 
-}
+};

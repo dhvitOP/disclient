@@ -1,6 +1,6 @@
-import { Client } from '../Client/Client';
-import { Payload } from '../interfaces';
-import { Message } from '../interfaces';
+import { Client } from "../Client/Client";
+import { Payload } from "../interfaces";
+import { Message } from "../interfaces";
 
 export default async function (client: Client, payload: Payload){
     /**
@@ -9,35 +9,35 @@ export default async function (client: Client, payload: Payload){
      * @returns {object}
      */
      const sendMessage = (content: string) => {
-        const res = client.rest.PostMessage(payload.d.channel_id, content)
+        const res = client.rest.PostMessage(payload.d.channel_id, content);
         return res;
-    }
+    };
     /**
      * Deletes a message in a channel
      * @param {string} reason 
      */
     const deleteMessage = (reason: string) => {
-        client.rest.deleteMessage(payload.d.channel_id, payload.d.id, reason)
-    }
+        client.rest.deleteMessage(payload.d.channel_id, payload.d.id, reason);
+    };
     /**
      * The Emoji to react
      * @param {string} emoji 
      */
     const reactMessage = (emoji: string) => {
-        client.rest.createReaction(payload.d.channel_id, payload.d.id, emoji)
-    }
+        client.rest.createReaction(payload.d.channel_id, payload.d.id, emoji);
+    };
     /**
      * Get channel and the details of the channel
      * @returns {object} channel
      */
     const get = () => {
-        const res = client.rest.fetchOneChannel(payload.d.channel_id)
+        const res = client.rest.fetchOneChannel(payload.d.channel_id);
         return res;
-    }
+    };
     const replyMessage = (content: string) => {
         const res = client.rest.replyMessage(payload.d.channel_id, payload.d.id, content);
         return res;
-    }
+    };
     /**
      * @typedef {Message} message
      */
@@ -59,6 +59,6 @@ export default async function (client: Client, payload: Payload){
             get: get,
             reply: replyMessage
         }
-    }
-    client.emit(payload.t, message)
+    };
+    client.emit(payload.t, message);
 }
