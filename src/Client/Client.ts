@@ -3,17 +3,17 @@ import RestApiHandler from "../RestApiHandler";
 import Socket from "../WebSocket/Socket";
 import ClientUser from "./ClientUser";
 import ClientEvents from "./ClientEvents";
-import Collection from "../modules/Collection";
+import { Group } from "../modules/Group";
 import { Activities } from "../interfaces";
 
 export declare interface Client {
     user: ClientUser;
     ws: Socket;
     rest: RestApiHandler;
-    guilds: Collection<string, any>;
-    channels: Collection<string, any>;
-    users: Collection<string, any>;
-    emojis: Collection<string, any>;
+    guilds: Group<string, any>;
+    channels: Group<string, any>;
+    users: Group<string, any>;
+    emojis: Group<string, any>;
     on<Event extends keyof ClientEvents>(
         event: Event,
         listener: ClientEvents[Event],
@@ -36,10 +36,10 @@ export class Client extends EventEmitter {
         super();
         this.ws = new Socket(this, token)
         this.rest = new RestApiHandler(this.ws.token)
-        this.guilds = new Collection()
-        this.channels = new Collection()
-        this.users = new Collection()
-        this.emojis = new Collection()
+        this.guilds = new Group()
+        this.channels = new Group()
+        this.users = new Group()
+        this.emojis = new Group()
     }
     /**
      * Logs in the client

@@ -1,14 +1,14 @@
-export default class Collection<K, V> extends Map {
-  public filter(fn: Function): Collection<K, V> {
-    const filtered = new Collection();
+export class Group<K, V> extends Map {
+  public filter(fn: Function): Group<K, V> {
+    const filtered = new Group();
     for (const [key, value] of this) {
       fn(value) ? filtered.set(key, value) : null;
     }
     return filtered;
   }
 
-  public map(fn: Function): Collection<K, V> {
-    const mapped = new Collection();
+  public map(fn: Function): Group<K, V> {
+    const mapped = new Group();
     for (const [key, value] of this) {
       mapped.set(key, fn(value));
     }
