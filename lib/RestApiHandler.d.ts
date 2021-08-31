@@ -1,3 +1,4 @@
+import { Embed } from "./modules/Embed";
 export default class RestApiHandler {
     private token;
     constructor(token: string | null);
@@ -35,8 +36,9 @@ export default class RestApiHandler {
      * @returns {object} member
      */
     fetchOneGuildMember(memberId: string, guildId: string): Promise<() => Promise<any>>;
-    PostMessage(channel: string, content: string): Promise<any>;
+    PostMessage(channel: string, content: string | null): Promise<any>;
     createReaction(channel: string, message: string, emoji: string): Promise<void>;
     deleteMessage(channel: string, message: string, reason: string): Promise<void>;
     replyMessage(channel: string, message: string, content: string): Promise<any>;
+    sendMessagewithEmbed(channel: string, content: string | null, embeds: Array<Embed>): Promise<any>;
 }

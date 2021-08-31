@@ -29,23 +29,23 @@ export class Embed {
     this._fields = [];
   }
 
-  set setTitle(title: string) {
+  async setTitle(title: string) {
     this._title = title;
   }
 
-  set setDescription(content: string) {
+  async setDescription(content: string) {
     this._description = content;
   }
 
-  set setType(type: string) {
+  async setType(type: string) {
     this._type = type;
   }
 
-  set setUrl(url: string){
+  async setUrl(url: string){
     this._url = url;
   }
 
-  set setTimestamp(yesorno: boolean){
+  async setTimestamp(yesorno: boolean){
     if(yesorno == true){
       this._timestamp = new Date();
     } else {
@@ -53,15 +53,28 @@ export class Embed {
     }
   }
 
-  set setColor(color: number){
+  async setColor(color: number){
     this._color = color;
   }
 
-  set setFooter(options: footerObject){
+  async setFooter(options: footerObject){
     this._footer = options;
   }
   
-  set setFields(fields: fieldObject[]){
-    this._fields = fields;
+  async create(){
+    const data = {
+      title: this._title,
+      description: this._description,
+      color: this._color,
+      footer: this._footer,
+      type: this._type,
+      timestamp: this._timestamp,
+      thumbnail: this._thumbnail,
+      video: this._video,
+      author: this._author,
+      fields: this._fields,
+      url: this._url,
+    }
+    return data;
   }
 }

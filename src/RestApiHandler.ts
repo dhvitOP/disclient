@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import { URI } from "./Constants";
+import { Embed } from "./modules/Embed";
 
 export default class RestApiHandler {
     constructor(private token: string | null){
@@ -81,7 +82,7 @@ export default class RestApiHandler {
 
         return res.json
     }
-    async PostMessage(channel: string, content: string){
+    async PostMessage(channel: string, content: string | null){
         const headers = { "Content-Type": "application/json", "Authorization": `Bot ${this.token}` };
         const data = {
             "content": content,
@@ -120,6 +121,22 @@ export default class RestApiHandler {
             "message_reference": {
                 "message_id": message
             },
+            "tts": false,
+        };
+        const body = JSON.stringify(data);
+        const res = await fetch(`${URI.API}/channels/${channel}/messages`, {
+            method: "POST",
+            headers,
+            body,
+        })
+    
+        return res.json();
+    }
+    async sendMessagewithEmbed(channel: string, content: string | null, embeds: Array<Embed>){
+        const headers = { "Content-Type": "application/json", "Authorization": `Bot ${this.token}` };
+        const data = {
+            "content": content,
+            "embeds": embeds,
             "tts": false,
         };
         const body = JSON.stringify(data);

@@ -1,6 +1,11 @@
 import { Client } from "../Client/Client";
 import { Payload } from "../interfaces";
 import { Message } from "../interfaces";
+import { Embed } from "../modules/Embed";
+
+type options = {
+    embeds?: Array<Embed>
+};
 
 export default async function (client: Client, payload: Payload){
     /**
@@ -8,8 +13,13 @@ export default async function (client: Client, payload: Payload){
      * @param {string} content
      * @returns {object}
      */
-     const sendMessage = (content: string) => {
-        const res = client.rest.PostMessage(payload.d.channel_id, content);
+     const sendMessage = (content: string | null, options: options) => {
+        let res;
+        if(options.embeds){
+            client.rest.sendMessagewithEmbed(payload.d.channel_id, content, options.embeds)
+        } else {
+            res = client.rest.PostMessage(payload.d.channel_id, content);
+        }
         return res;
     };
     /**
