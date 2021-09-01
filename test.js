@@ -1,6 +1,6 @@
 const discord = require("./lib/index");
 
-const client = new discord.Client("ODEzNjQ5NjAzODQ4NDM3Nzcw.YDSYPg.XYb0Eoi1ZeIhzRKqPa85sGwqXo4");
+const client = new discord.Client("TOKEN");
 
 client.on("READY", () => {
   console.log(`${client.user.tag} is online`);
