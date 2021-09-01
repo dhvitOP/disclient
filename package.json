@@ -1,6 +1,6 @@
 {
   "name": "disclient",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "A powerfull discord api wrapper.",
   "main": "lib/index.js",
   "types": "lib",
