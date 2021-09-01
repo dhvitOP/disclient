@@ -90,7 +90,7 @@ bot.on("MESSAGE_CREATE", async (message) => {
 
 bot.build();
 ```
-<h3>Sending Embeds :<h3>
+<h3>Sending Embeds :</h3>
 
 ```JS
 const { Client, Embed } = require("disclient");
