@@ -36,15 +36,41 @@ export default class Socket extends EventEmitter {
         }
 
         if (event !== null) {
-          const { default: module } = await import(`../handlers/${event}`);
-          module(this.client, packet);
+          try {
+            const { default: module } = await import(`../handlers/${event}`);
+            module(this.client, packet);
+          } catch (err) {
+            console.log("[DISCLIENT] %d", err);
+          }
         }
       });
     } catch (err) {
       console.log(`[Disclient] ${err.stack}`);
     }
   }
-  async UpdatePresence(msg: string, type: number | any, status: string | null) {
+
+  async UpdatePresence(msg: string, type: string, status: string | null) {
+    let activitytype;
+    switch (type) {
+      case "PLAYING":
+        activitytype = 0;
+        break;
+      case "STREAMING":
+        activitytype = 1;
+        break;
+      case "LISTENING":
+        activitytype = 2;
+        break;
+      case "WATCHING":
+        activitytype = 3;
+        break;
+      case "CUSTOM":
+        activitytype = 4;
+        break;
+      case "COMPETING":
+        activitytype = 5;
+        break;
+    }
     const data = {
       op: 3,
       d: {
@@ -52,10 +78,10 @@ export default class Socket extends EventEmitter {
         activities: [
           {
             name: msg,
-            type: type,
+            type: activitytype,
           },
         ],
-        status: status,
+        status: "online",
         afk: false,
       },
     };

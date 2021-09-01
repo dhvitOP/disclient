@@ -8,6 +8,6 @@ export default class Socket extends EventEmitter {
     private ws;
     constructor(client: Client, token: string);
     login(): Promise<void>;
-    UpdatePresence(msg: string, type: number | any, status: string | null): Promise<void>;
+    UpdatePresence(msg: string, type: string, status: string | null): Promise<void>;
     private heartbeat;
 }

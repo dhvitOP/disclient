@@ -55,7 +55,7 @@ export class Client extends EventEmitter {
         try {
             this.ws.UpdatePresence(message, type, null);
         } catch(err){
-
+            console.log("[Disclient] %d", err)
         }
     }
 }

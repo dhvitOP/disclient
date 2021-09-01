@@ -1,9 +1,10 @@
 const discord = require("./lib/index");
 
-const client = new discord.Client("TOKEN");
+const client = new discord.Client("ODEzNjQ5NjAzODQ4NDM3Nzcw.YDSYPg.XYb0Eoi1ZeIhzRKqPa85sGwqXo4");
 
 client.on("READY", () => {
   console.log(`${client.user.tag} is online`);
+  client.setActivity(`My name is ${client.user.tag}`, "PLAYING");
 });
 
 client.on("MESSAGE_CREATE", async message => {
