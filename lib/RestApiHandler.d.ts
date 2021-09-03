@@ -1,3 +1,4 @@
+import { Button } from "./modules/Button";
 import { Embed } from "./modules/Embed";
 export default class RestApiHandler {
     private token;
@@ -40,5 +41,5 @@ export default class RestApiHandler {
     createReaction(channel: string, message: string, emoji: string): Promise<void>;
     deleteMessage(channel: string, message: string, reason: string): Promise<void>;
     replyMessage(channel: string, message: string, content: string): Promise<any>;
-    sendMessagewithEmbed(channel: string, content: string | null, embeds: Array<Embed>): Promise<any>;
+    sendMessagewithEmbedandButton(channel: string, content: string | null, embeds?: Array<Embed>, components?: Button[]): Promise<any>;
 }

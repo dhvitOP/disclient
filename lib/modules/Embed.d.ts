@@ -20,7 +20,7 @@ export declare class Embed {
     setTimestamp(yesorno: boolean): Promise<void>;
     setColor(color: number): Promise<void>;
     setFooter(options: footerObject): Promise<void>;
-    create(): Promise<{
+    get create(): {
         title: string | null;
         description: string | null;
         color: number | null;
@@ -32,5 +32,5 @@ export declare class Embed {
         author: object | null;
         fields: fieldObject[];
         url: string | null;
-    }>;
+    };
 }

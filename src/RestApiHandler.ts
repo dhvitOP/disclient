@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import { URI } from "./Constants";
+import { Button } from "./modules/Button";
 import { Embed } from "./modules/Embed";
 
 export default class RestApiHandler {
@@ -132,11 +133,17 @@ export default class RestApiHandler {
     
         return res.json();
     }
-    async sendMessagewithEmbed(channel: string, content: string | null, embeds: Array<Embed>){
-        const headers = { "Content-Type": "application/json", "Authorization": `Bot ${this.token}` };
+    async sendMessagewithEmbedandButton(channel: string, content: string | null, embeds?: Array<Embed>, components?: Button[]){
+        const headers = { "Content-Type": "application/json", "Authorization": `Bot ${this.token}` }
         const data = {
             "content": content,
             "embeds": embeds,
+            "components": [
+                {
+                    "type": 1,
+                    "components": components
+                }
+            ],
             "tts": false,
         };
         const body = JSON.stringify(data);
@@ -145,7 +152,6 @@ export default class RestApiHandler {
             headers,
             body,
         })
-    
         return res.json();
     }
 }

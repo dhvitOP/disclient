@@ -40,7 +40,7 @@ export default class Socket extends EventEmitter {
             const { default: module } = await import(`../handlers/${event}`);
             module(this.client, packet);
           } catch (err) {
-            console.log("[DISCLIENT] %d", err);
+            console.log(`[DISCLIENT] ${err.stack}`);
           }
         }
       });

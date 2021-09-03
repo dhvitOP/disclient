@@ -61,7 +61,7 @@ export class Embed {
     this._footer = options;
   }
   
-  async create(){
+  get create(){
     const data = {
       title: this._title,
       description: this._description,

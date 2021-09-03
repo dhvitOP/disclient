@@ -1,9 +1,15 @@
+import { Button, Embed } from ".";
+
 export interface Payload {
   op: number;
   d: any;
   t: any;
   s: number;
 }
+type options = {
+  embeds?: Array<Embed>;
+  components?: Array<Button>
+};
 export interface Message {
   author: {
     id: string;
@@ -36,8 +42,8 @@ export interface Message {
   channel: {
     id: string;
     get: any;
-    sendMessage: Function;
-    reply: Function;
+    sendMessage: (content: string | null, options: options) => any;
+    reply: (content: string) => any;
   };
 }
 
@@ -49,3 +55,55 @@ export enum Activities {
   CUSTOM = 4,
   COMPETING = 5,
 }
+
+export interface Interaction {
+  button: boolean;
+  message: {
+    tts: boolean;
+    timestamp: Date;
+    pinned: boolean;
+    mentions: string[];
+    mention_roles: string[];
+    mention_everyone: boolean;
+    id: string;
+    flags: number;
+    embeds: Embed[];
+    edited_timestamp: Date | null;
+    content: string;
+    channel_id: string;
+    author: {
+      username: string;
+      public_flags: number;
+      id: string;
+      discriminator: string;
+      bot: boolean;
+      avatar: string;
+    };
+    attachments: any[];
+  };
+  member: {
+    user: {
+      username: string;
+      public_flags: number;
+      id: string;
+      discriminator: string;
+      avatar: string;
+    };
+    roles: string[];
+    premium_since: Date | null;
+    permissions: number;
+    pending: any | null;
+    nick: string | null;
+    mute: boolean;
+    joined_at: Date;
+    is_pending: boolean;
+    deaf: boolean;
+    avatar: string | null;
+  };
+  id: string;
+  guild_id: string;
+  custom_id: string | null;
+  channel_id: string;
+  application_id: string;
+  sendMessage: (content: string | null, options: options) => any;
+};
