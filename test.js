@@ -1,6 +1,6 @@
 const { Client, Button, Embed } = require("./lib/index");
 
-const client = new Client("TOKEN");
+const client = new Client("");
 
 client.on("READY", () => {
   console.log(`${client.user.tag} is online`);
@@ -8,14 +8,10 @@ client.on("READY", () => {
 });
 
 client.on("MESSAGE_CREATE", async message => {
-  if (message.content === "_ping") {
-    const button = new Button()
-    button.setLabel("Hello")
-    button.setStyle("Danger")
-    button.setDisabled(false)
-    button.setID("Helo")
-    const button1 = button.create;
-    message.channel.sendMessage("Helo", { embeds: null, components: [button1] });
+  if(message.content.endsWith("!") && message.isLink()){
+    message.channel.sendMessage("Message is a link")
+  } else if(message.content.endsWith("!") && !message.isLink()){
+    message.channel.sendMessage("Message is not a link")
   }
 });
 

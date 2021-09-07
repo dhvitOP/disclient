@@ -37,6 +37,7 @@ export interface Message {
     tts: boolean;
     content: string;
     delete: Function;
+    isLink: () => boolean;
     react: Function;
     channel: {
         id: string;
