@@ -8,6 +8,7 @@
 <h3><ins>What is this?</ins></h3>
 disclient is a discord api wrapper in which you can use it to post or recieve requests to the <a href="https://discord.com/developers/docs/topics/gateway/topics/gateway">discord gateway</a>,  and the <a href="https://discord.com/developers/docs/reference">discord api</a>
 <br>
+# I am sorry but botlist nahi bana sakta
 <h3><ins>How do i Install?</ins></h3>
 
 ```sh-session
