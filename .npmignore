@@ -8,3 +8,4 @@ src
 .gitignore
 .prettierrc.json
 tsconfig.json
+.esllintrc.json

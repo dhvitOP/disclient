@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import { Message } from ".";
 import { URI } from "./Constants";
 import { Button } from "./modules/Button";
 import { Embed } from "./modules/Embed";
@@ -148,6 +149,20 @@ export default class RestApiHandler {
         };
         const body = JSON.stringify(data);
         const res = await fetch(`${URI.API}/channels/${channel}/messages`, {
+            method: "POST",
+            headers,
+            body,
+        })
+        return res.json();
+    }
+    async createInteractionResponse(message: string, interaction_token: string, interaction_id: string, emphemeral?: boolean){
+        const headers = { "Content-Type": "application/json", "Authorization": `Bot ${this.token}` }
+        const data = {
+            "content": message,
+            "emphemeral": emphemeral
+        }
+        const body = JSON.stringify(data);
+        const res = await fetch(`${URI.API}/${interaction_id}/${interaction_token}/callback`, {
             method: "POST",
             headers,
             body,
