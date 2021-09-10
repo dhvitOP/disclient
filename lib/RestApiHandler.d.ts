@@ -42,4 +42,5 @@ export default class RestApiHandler {
     deleteMessage(channel: string, message: string, reason: string): Promise<void>;
     replyMessage(channel: string, message: string, content: string): Promise<any>;
     sendMessagewithEmbedandButton(channel: string, content: string | null, embeds?: Array<Embed>, components?: Button[]): Promise<any>;
+    createInteractionResponse(message: string, interaction_token: string, interaction_id: string, emphemeral?: boolean, intertype?: number): Promise<void>;
 }

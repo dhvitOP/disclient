@@ -1,5 +1,5 @@
 import EventEmitter from "events";
-import WebSocket from "ws";
+import WebSocket, { ErrorEvent } from "ws";
 import { Client } from "../Client/Client";
 import { URI } from "../Constants";
 import createPayload from "./Payloads";
@@ -10,7 +10,7 @@ export default class Socket extends EventEmitter {
   private ws: WebSocket | undefined;
 
   constructor(private client: Client, token: string) {
-    super();
+    super(); 
     this.token = token;
     this.ws = new WebSocket(URI.GATEWAY);
   }
@@ -40,12 +40,12 @@ export default class Socket extends EventEmitter {
             const { default: module } = await import(`../handlers/${event}`);
             module(this.client, packet);
           } catch (err) {
-            console.log(`[DISCLIENT] ${err.stack}`);
+            console.log(`[DISCLIENT] ${err}`);
           }
         }
       });
     } catch (err) {
-      console.log(`[Disclient] ${err.stack}`);
+      console.log(`[Disclient] ${err}`);
     }
   }
 

@@ -155,18 +155,21 @@ export default class RestApiHandler {
         })
         return res.json();
     }
-    async createInteractionResponse(message: string, interaction_token: string, interaction_id: string, emphemeral?: boolean){
+    async createInteractionResponse(message: string, interaction_token: string, interaction_id: string, emphemeral?: boolean, intertype?: number){
         const headers = { "Content-Type": "application/json", "Authorization": `Bot ${this.token}` }
         const data = {
-            "content": message,
-            "emphemeral": emphemeral
+            "data": {
+                "tts": false,
+                "content": message,
+                "flags": emphemeral?1<<6:null,
+            },
+            "type": 4
         }
         const body = JSON.stringify(data);
-        const res = await fetch(`${URI.API}/${interaction_id}/${interaction_token}/callback`, {
+        await fetch(`${URI.API}/interactions/${interaction_id}/${interaction_token}/callback`, {
             method: "POST",
             headers,
             body,
-        })
-        return res.json();
+        });
     }
 }

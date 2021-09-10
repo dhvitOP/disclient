@@ -104,5 +104,6 @@ export interface Interaction {
     channel_id: string;
     application_id: string;
     sendMessage: (content: string | null, options: options) => any;
+    reply: (content: string, emphemeral?: boolean) => any;
 }
 export {};

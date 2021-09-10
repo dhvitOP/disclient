@@ -1,6 +1,6 @@
 const { Client, Button, Embed } = require("./lib/index");
 const prefix = "!";
-const client = new Client("ODEzNjQ5NjAzODQ4NDM3Nzcw.YDSYPg.P3zaTnESago_l-ZCPlfxgbA4LYY");
+const client = new Client("TOKEN");
 
 client.on("READY", async () => {
   console.log(`${client.user.tag} is online`);
@@ -24,7 +24,7 @@ client.on("INTERACTION_CREATE", async (interaction) => {
   if(!interaction.button) return;
   switch(interaction.custom_id){
     case "hello":
-      interaction.sendMessage("You clicked the button");
+      interaction.reply(`You clicked the button \`${interaction.custom_id}\``, true);
     break;
   }
 });
